@@ -1,19 +1,20 @@
 # postback_delivery
 
 ### Data Distribution Simulation
-- Php application to handle http post requests /app/php
+- Php application to handle incoming http post requests /app/php
 - Go application to deliver http responses /app/go
-- Host a redis queue between the php and go applications
+- Redis queue between the php and go applications
 
 
 ### To run locally:
 The php app:
 - redis-server
-- redis-cli monitor  (to see subscriptions and objects published)
+- redis-cli monitor  (to see subscriptions and objects published to the redis channel)
 - php -S localhost:8000  (run the ingestion agent on port 8000 )
 The go app(dependent on the php + redis):
-- go run app/go_app/deliver.go (should see starting, and then a log of responses
-               in response to postman request. Will time out after 1 minute)
+- go run app/go_app/deliver.go (should see starting printed to the console,
+               and then a log of responses in response to postman request.
+                Will time out after 1 minute)
 
 
 - tested locally using postman
@@ -34,3 +35,6 @@ The go app(dependent on the php + redis):
 ```
 
 ### Dockerizing
+  run docker-compose up
+  Not working at the moment, permission denied on go app and "Could not open input file: index.php"
+  for consumer
