@@ -1,5 +1,4 @@
 <?php
-
 // establish redis connection
 $redis = new Redis();
 // default redis port 6379
@@ -10,10 +9,11 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method == "POST")
 {
+  echo "Pushing object to redis queue";
   // read incoming post body
   $json = file_get_contents('php://input');
   // decode to inspect in testing
-  $request = json_decode($json, TRUE)
+  $request = json_decode($json, TRUE);
   // push object into redis channel named taskQ
   $redis -> publish("taskQ", json_encode($request));
 }
