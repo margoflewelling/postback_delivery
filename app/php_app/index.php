@@ -2,7 +2,7 @@
 // establish redis connection
 $redis = new Redis();
 // default redis port 6379
-$redis->connect('127.0.0.1', 6379);
+$redis->connect('redis', 6379);
 
 // git the incoming http request method
 $method = $_SERVER['REQUEST_METHOD'];

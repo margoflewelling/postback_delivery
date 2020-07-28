@@ -31,7 +31,7 @@ type Request struct {
 func main() {
   fmt.Println("Starting")
     RedisClient := redis.NewClient(&redis.Options{
-      Addr: "localhost:6379",
+      Addr: "redis:6379",
     })
     // subscribe to the channel 'taskQ' established in php app
     subNewMessage := RedisClient.Subscribe(ctx, "taskQ")
@@ -55,6 +55,7 @@ func main() {
       endpoint = strings.Replace(endpoint, "{location}", request.Data[0].Location, 1)
       send_request(request.Endpoint.Method, endpoint)
     }
+    fmt.Println("Stopping")
 }
 
 // method to send http response

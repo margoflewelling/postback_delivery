@@ -1,22 +1,30 @@
-version: "2"
+version: "3"
 services:
     redis:
       image: redis
       ports:
-          - "6379"
-      command: redis-server
-
-    consumer:
-      build: ./app/php_app
-      ports:
-        - "8000:8000"
-      depends_on:
-          - redis
+      - "6379"
+      networks:
+      - app
 
     deliver:
       build: ./app/go_app
       ports:
-        - "8080:8080"
+      - "8080:8080"
+      networks:
+      - app
       depends_on:
-          - redis
-          - consumer
+      - redis
+      - consumer
+
+    consumer:
+      build: ./app/php_app
+      ports:
+      - "8000:80"
+      networks:
+      - app
+      depends_on:
+      - redis
+
+networks:
+  app: {}

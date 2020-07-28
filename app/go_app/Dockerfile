@@ -1,10 +1,13 @@
 FROM golang:1.14
 
-COPY . /app/go_app
+WORKDIR /go/src/app
+COPY . .
 
-RUN apt-get -y update
-RUN go get github.com/go-redis/redis
+RUN go get -d -v ./...
+RUN go install -v ./...
 
-ENTRYPOINT /app/go_app/deliver.go
+
 
 EXPOSE 8080
+
+CMD ["app"]
