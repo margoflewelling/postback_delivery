@@ -35,6 +35,4 @@ The go app(dependent on the php + redis):
 ```
 
 ### Dockerizing
-  run docker-compose up
-  Not working at the moment, permission denied on go app and "Could not open input file: index.php"
-  for consumer
+  Run docker-compose up
