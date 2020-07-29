@@ -36,3 +36,5 @@ The go app(dependent on the php + redis):
 
 ### Dockerizing
   Run docker-compose up
+  Run post requests in Postman, example above
+  Currently the app only listens for 60 seconds before shutting down. 
